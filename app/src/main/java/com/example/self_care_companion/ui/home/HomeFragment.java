@@ -31,6 +31,14 @@ public class HomeFragment extends Fragment {
             navView.setSelectedItemId(R.id.navigation_journal_nobutton);
         });
 
+        binding.habitsButton.setOnClickListener(v -> {
+            BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
+            navView.setSelectedItemId(R.id.navigation_habits);
+        });
+
+        binding.checkinButton.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.navigation_mood);
+        });
 
         return root;
     }
