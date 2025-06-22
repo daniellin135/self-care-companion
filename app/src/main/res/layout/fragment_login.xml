@@ -8,10 +8,12 @@
     android:background="#FFF0F1">
 
     <TextView
+        android:id="@+id/pin_prompt"
+        style="@style/TextBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter your PIN"
-        android:textSize="18sp"
+        android:textColor="#212121"
         android:layout_marginBottom="16dp" />
 
     <EditText
@@ -19,14 +21,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberPassword"
-        android:hint="PIN" />
+        android:hint="PIN"
+        android:textColor="#212121"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
+        android:backgroundTint="#CED1F8" />
 
     <Button
         android:id="@+id/login_button"
+        style="@style/TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
         android:layout_marginTop="20dp"
         android:backgroundTint="#CED1F8"
-        android:textColor="#000000"/>
+        android:textColor="#212121"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
 </LinearLayout>

@@ -5,7 +5,6 @@
     android:background="#FFF0F1"
     android:padding="16dp">
 
-    <!-- UI Content Block: centered slightly downward -->
     <LinearLayout
         android:id="@+id/content_wrapper"
         android:layout_width="match_parent"
@@ -16,65 +15,71 @@
         android:layout_marginTop="60dp"
         android:layout_marginBottom="80dp">
 
-        <!-- Top Titles -->
         <TextView
-            android:id="@+id/home_title"
+            style="@style/TextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_home"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="#000000"
-            android:layout_marginBottom="4dp"/>
+            android:textColor="#212121" />
 
         <TextView
-            android:id="@+id/app_name"
+            style="@style/TextCaption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/self_care_companion"
-            android:textSize="16sp"
-            android:textColor="#000000"
-            android:layout_marginBottom="24dp"/>
+            android:textColor="#212121" />
 
-        <!-- Greeting -->
         <TextView
+            style="@style/TextBody"
             android:id="@+id/greeting_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hello"
-            android:textSize="18sp"
-            android:textColor="#000000"
+            android:textColor="#212121"
             android:layout_marginBottom="32dp"/>
 
-        <!-- Buttons -->
         <Button
+            style="@style/TextButton"
             android:id="@+id/checkin_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:text="@string/check_in"
             android:backgroundTint="#CED1F8"
-            android:textColor="#000000"
-            android:layout_marginBottom="16dp"/>
+            android:textColor="#212121"/>
 
         <Button
+            style="@style/TextButton"
             android:id="@+id/habits_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:text="@string/track_habits"
             android:backgroundTint="#CED1F8"
-            android:textColor="#000000"
-            android:layout_marginBottom="16dp"/>
+            android:textColor="#212121"/>
 
         <Button
+            style="@style/TextButton"
             android:id="@+id/journal_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:text="@string/journal_button"
             android:backgroundTint="#CED1F8"
-            android:textColor="#000000"/>
+            android:textColor="#212121"/>
     </LinearLayout>
 
-    <!-- Bottom Navigation Bar -->
     <LinearLayout
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
@@ -85,6 +90,7 @@
         android:weightSum="4">
 
         <TextView
+            style="@style/TextBody"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -95,27 +101,30 @@
             android:background="#FFFFFF"/>
 
         <TextView
+            style="@style/TextBody"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/title_journal"
             android:gravity="center"
-            android:textColor="#000000"/>
+            android:textColor="#212121"/>
 
         <TextView
+            style="@style/TextBody"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/title_habits"
             android:gravity="center"
-            android:textColor="#000000"/>
+            android:textColor="#212121"/>
 
         <TextView
+            style="@style/TextBody"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/title_profile"
             android:gravity="center"
-            android:textColor="#000000"/>
+            android:textColor="#212121"/>
     </LinearLayout>
 </RelativeLayout>
