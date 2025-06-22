@@ -16,6 +16,7 @@
         android:layout_marginBottom="80dp">
 
         <TextView
+            android:id="@+id/home_title"
             style="@style/TextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,20 +24,21 @@
             android:textColor="#212121" />
 
         <TextView
-            style="@style/TextCaption"
+            android:id="@+id/app_name"
+            style="@style/TextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/self_care_companion"
             android:textColor="#212121" />
 
         <TextView
-            style="@style/TextBody"
             android:id="@+id/greeting_text"
+            style="@style/TextCaption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:text="@string/hello"
-            android:textColor="#212121"
-            android:layout_marginBottom="32dp"/>
+            android:textColor="#212121" />
 
         <Button
             style="@style/TextButton"

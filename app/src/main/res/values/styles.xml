@@ -22,7 +22,7 @@
     <!-- Caption Text Style -->
     <style name="TextCaption">
         <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <!-- Button Text Style -->
