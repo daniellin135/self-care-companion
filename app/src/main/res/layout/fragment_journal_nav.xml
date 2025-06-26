@@ -28,18 +28,17 @@
                 android:backgroundTint="#CED1F8"
                 android:src="@drawable/ic_home_black_24dp"
                 android:scaleType="centerInside"
-                android:contentDescription="Home"/>
+                android:contentDescription="Home button" />
         </FrameLayout>
 
         <!-- CHECK-IN Title -->
         <TextView
             android:id="@+id/titleText"
+            style="@style/TextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CHECK-IN"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="#212121"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="60dp" />
@@ -47,13 +46,13 @@
         <!-- Prompt -->
         <TextView
             android:id="@+id/promptText"
+            style="@style/TextBody"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Want to jot down what’s on your mind?"
-            android:textSize="20sp"
-            android:textColor="#000000"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center_horizontal" />
+            android:textColor="#212121"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp" />
 
         <!-- Multi-line text box -->
         <EditText
@@ -65,29 +64,25 @@
             android:background="#FFFFFF"
             android:inputType="textMultiLine"
             android:minLines="6"
-            android:textColor="#000000"
+            android:textColor="#212121"
             android:textColorHint="#888888"
-            android:layout_marginBottom="24dp"/>
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:layout_marginBottom="24dp" />
 
         <!-- Save button -->
         <Button
+            style="@style/TextButton"
             android:id="@+id/saveButton"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SAVE"
-            android:textColor="#000000"
+            android:textColor="#212121"
             android:backgroundTint="#CED1F8"
             android:layout_gravity="end"
-            android:layout_marginBottom="32dp"/>
-
-        <!-- Back & Next buttons -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:weightSum="2">
-        </LinearLayout>
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="32dp" />
 
         <!-- Bottom Padding -->
         <Space

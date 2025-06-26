@@ -16,38 +16,49 @@
         android:contentDescription="Logo" />
 
     <TextView
+        style="@style/TextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SELF-CARE\nCOMPANION"
         android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textColor="#212121"
         android:lineSpacingExtra="4dp"
         android:layout_marginBottom="12dp" />
 
     <TextView
+        style="@style/TextBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your daily\nwellness partner"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textColor="#212121"
         android:layout_marginBottom="36dp" />
 
     <Button
+        style="@style/TextButton"
         android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SIGN UP"
         android:backgroundTint="#D0D8FF"
-        android:textColor="#000000"
+        android:textColor="#212121"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:layout_marginBottom="12dp" />
 
     <Button
+        style="@style/TextButton"
         android:id="@+id/btn_log_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="LOG IN"
         android:backgroundTint="#D0D8FF"
-        android:textColor="#000000" />
+        android:textColor="#212121"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
 
 </LinearLayout>

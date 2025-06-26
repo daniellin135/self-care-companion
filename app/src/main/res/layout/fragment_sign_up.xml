@@ -7,11 +7,11 @@
     android:padding="24dp">
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:layout_gravity="center">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center">
 
         <!-- Spacer to push content down -->
         <View
@@ -40,6 +40,8 @@
                 android:layout_height="wrap_content"
                 android:hint="First Name"
                 android:inputType="textPersonName"
+                android:textColor="#000000"
+                android:textSize="16sp"
                 android:layout_marginBottom="12dp" />
 
             <EditText
@@ -48,6 +50,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:textColor="#000000"
+                android:textSize="16sp"
                 android:layout_marginBottom="12dp" />
 
             <EditText
@@ -56,6 +60,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Pin"
                 android:inputType="textPassword"
+                android:textColor="#000000"
+                android:textSize="16sp"
                 android:layout_marginBottom="24dp" />
 
             <Button
@@ -64,7 +70,9 @@
                 android:layout_height="wrap_content"
                 android:text="Sign Up"
                 android:backgroundTint="#D0D8FF"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textAllCaps="true"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Spacer to push content up -->
