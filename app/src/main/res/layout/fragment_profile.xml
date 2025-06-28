@@ -31,6 +31,7 @@
 
         <Button
             android:id="@+id/btn_view_insights"
+            style="@style/TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#CED1F8"
@@ -40,6 +41,7 @@
 
         <Button
             android:id="@+id/btn_notifications"
+            style="@style/TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NOTIFICATIONS"
@@ -49,6 +51,7 @@
 
         <Button
             android:id="@+id/btn_settings"
+            style="@style/TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SETTINGS"
@@ -58,6 +61,7 @@
 
         <Button
             android:id="@+id/btn_help_support"
+            style="@style/TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HELP AND SUPPORT"
