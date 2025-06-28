@@ -1,5 +1,6 @@
 package com.example.self_care_companion.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,14 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        String firstName = requireContext()
+                .getSharedPreferences("selfcare", Context.MODE_PRIVATE)
+                .getString("user_name", "");
+
+        if (!firstName.isEmpty()) {
+            binding.greetingText.setText("Hello, " + firstName + "!");
+        }
 
         binding.journalButton.setOnClickListener(v -> {
             BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
