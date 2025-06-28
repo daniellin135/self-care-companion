@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Existing app theme (keep this if it's already there) -->
+    <!-- Existing app theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Theme-specific items -->
     </style>
@@ -11,6 +11,16 @@
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#212121</item>
+    </style>
+
+    <!-- All-Caps Title Style for screens like CHECK-IN -->
+    <style name="TextTitleAllCaps">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#212121</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
     <!-- Body Text Style -->
@@ -23,6 +33,14 @@
     <style name="TextCaption">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- Prompt Text Style (smaller + not bold) -->
+    <style name="TextPrompt">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">#212121</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
     <!-- Button Text Style -->

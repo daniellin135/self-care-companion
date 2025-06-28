@@ -46,11 +46,10 @@
         <!-- Prompt -->
         <TextView
             android:id="@+id/promptText"
-            style="@style/TextBody"
+            style="@style/TextPrompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Want to jot down what’s on your mind?"
-            android:textColor="#212121"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center_horizontal" />
 
