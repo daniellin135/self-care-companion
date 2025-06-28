@@ -5,6 +5,7 @@
     android:background="#FFF0F1"
     android:padding="16dp">
 
+    <!-- Invisible View for future expansion -->
     <View
         android:id="@+id/home_placeholder"
         android:layout_width="48dp"
@@ -17,33 +18,33 @@
         android:focusable="false"
         android:clickable="false" />
 
-    <TextView
-        android:id="@+id/home_title"
-        style="@style/TextTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_home"
-        android:textColor="#212121"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/home_placeholder"
-        android:layout_marginTop="20dp" />
-
-    <!-- Main content -->
+    <!-- Main content, now centered vertically -->
     <LinearLayout
         android:id="@+id/content_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:layout_below="@id/home_title"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="80dp">
+        android:layout_above="@id/bottom_nav"
+        android:layout_marginBottom="160dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="logo_image"
+            android:src="@drawable/self_care_logo" />
 
         <TextView
             android:id="@+id/app_name"
             style="@style/TextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:text="@string/self_care_companion"
             android:textColor="#212121" />
 
@@ -68,7 +69,7 @@
             android:paddingEnd="16dp"
             android:text="@string/check_in"
             android:backgroundTint="#CED1F8"
-            android:textColor="#212121"/>
+            android:textColor="#212121" />
 
         <Button
             style="@style/TextButton"
@@ -82,7 +83,7 @@
             android:paddingEnd="16dp"
             android:text="@string/track_habits"
             android:backgroundTint="#CED1F8"
-            android:textColor="#212121"/>
+            android:textColor="#212121" />
 
         <Button
             style="@style/TextButton"
@@ -95,7 +96,7 @@
             android:paddingEnd="16dp"
             android:text="@string/journal_button"
             android:backgroundTint="#CED1F8"
-            android:textColor="#212121"/>
+            android:textColor="#212121" />
     </LinearLayout>
 
     <!-- Bottom Navigation Bar -->
@@ -117,7 +118,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="#9FA3D8"
-            android:background="#FFFFFF"/>
+            android:background="#FFFFFF" />
 
         <TextView
             style="@style/TextBody"
@@ -126,7 +127,7 @@
             android:layout_weight="1"
             android:text="@string/title_journal"
             android:gravity="center"
-            android:textColor="#212121"/>
+            android:textColor="#212121" />
 
         <TextView
             style="@style/TextBody"
@@ -135,7 +136,7 @@
             android:layout_weight="1"
             android:text="@string/title_habits"
             android:gravity="center"
-            android:textColor="#212121"/>
+            android:textColor="#212121" />
 
         <TextView
             style="@style/TextBody"
@@ -144,6 +145,6 @@
             android:layout_weight="1"
             android:text="@string/title_profile"
             android:gravity="center"
-            android:textColor="#212121"/>
+            android:textColor="#212121" />
     </LinearLayout>
 </RelativeLayout>
