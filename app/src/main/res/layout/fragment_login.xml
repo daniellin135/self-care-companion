@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/pin_prompt"
-        style="@style/TextBody"
+        style="@style/TextPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter your PIN"

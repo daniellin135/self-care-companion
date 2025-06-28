@@ -63,6 +63,11 @@ public class SignUpFragment extends Fragment {
             }
 
             db.addUser(name, email, pin);
+            requireContext()
+                    .getSharedPreferences("selfcare", Context.MODE_PRIVATE)
+                    .edit()
+                    .putString("user_name", name)
+                    .apply();
             Toast.makeText(requireContext(), "Account created!", Toast.LENGTH_SHORT).show();
 
             // Clear fields

@@ -38,18 +38,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="60dp" />
+            android:layout_marginBottom="60dp"
+            android:textAllCaps="true" />
 
         <!-- Prompt -->
         <TextView
             android:id="@+id/prompt_mood"
-            style="@style/TextTitle"
+            style="@style/TextPrompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:text="@string/mood_prompt"
-            android:textColor="#212121" />
+            android:text="@string/mood_prompt" />
 
         <!-- Mood Options -->
         <GridLayout
