@@ -27,10 +27,6 @@ public class JournalFragment extends Fragment {
 
         binding = FragmentJournalBinding.inflate(inflater, container, false);
 
-        binding.homeButton.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.navigation_home);
-        });
-
         binding.saveButton.setOnClickListener(v -> {
             String journalEntry = binding.journalInput.getText().toString();
 
