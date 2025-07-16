@@ -55,6 +55,7 @@ public class HabitsFragment extends Fragment {
         }
 
         LinearLayout habitContainer = root.findViewById(R.id.habitContainer);
+        habitContainer.removeAllViews();
 
         for (String habit : habits) {
             String[] habitParts = habit.split("\\|");
@@ -168,7 +169,6 @@ public class HabitsFragment extends Fragment {
                     double currentHabitValue = Double.parseDouble(value.getText().toString());
                     double newHabitValue = currentHabitValue + incrementValue;
                     value.setText(String.valueOf(newHabitValue));
-                    databaseHelper.addHabit(labelValue, newHabitValue, unitValue, goalValue);
                 }
             });
 

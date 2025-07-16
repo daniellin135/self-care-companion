@@ -9,11 +9,13 @@ import android.content.ContentValues;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashSet;
-import java.util.Set;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
+import java.util.TimeZone;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -107,7 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void addHabit(String label, double value, String units, double goal) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String checkQuery = "SELECT id FROM Habit WHERE label = ? AND DATE(timestamp) = DATE('now', 'localtime')";
+        String checkQuery = "SELECT id FROM Habit WHERE label = ? AND DATE(timestamp) = DATE('now')";
         Cursor cursor = db.rawQuery(checkQuery, new String[]{label});
 
         if (cursor.moveToFirst()) {
@@ -132,27 +134,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Set<String> getUniqueHabits() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        TimeZone easternTimeZone = TimeZone.getTimeZone("America/New_York");
+        Calendar now = Calendar.getInstance(easternTimeZone);
 
-        String habitQuery = "SELECT DISTINCT label, units FROM Habit";
-        Cursor habitCursor = db.rawQuery(habitQuery, null);
+        now.set(Calendar.HOUR_OF_DAY, 0);
+        now.set(Calendar.MINUTE, 0);
+        now.set(Calendar.SECOND, 0);
+        now.set(Calendar.MILLISECOND, 0);
+        Date startOfTodayEastern = now.getTime();
+
+        now.add(Calendar.DATE, 1);
+        Date startOfTomorrowEastern = now.getTime();
+
+        SimpleDateFormat utcFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+        utcFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String startUtcStr = utcFormat.format(startOfTodayEastern);
+        String endUtcStr = utcFormat.format(startOfTomorrowEastern);
 
         Set<String> habits = new HashSet<>();
+
+        String habitQuery = "SELECT label, units, MAX(goal) FROM Habit GROUP BY label, units";
+        Cursor habitCursor = db.rawQuery(habitQuery, null);
 
         if (habitCursor.moveToFirst()) {
             do {
                 String label = habitCursor.getString(0);
                 String units = habitCursor.getString(1);
+                double goalValue = habitCursor.getDouble(2);
 
                 double todayValue = 0;
-                double goalValue = 0;
 
-                String entryQuery = "SELECT value, goal FROM Habit WHERE label = ? AND DATE(timestamp) = ?";
-                Cursor entryCursor = db.rawQuery(entryQuery, new String[]{label, today});
+                String entryQuery = "SELECT value FROM Habit WHERE label = ? AND timestamp >= ? AND timestamp < ?";
+                Cursor entryCursor = db.rawQuery(entryQuery, new String[]{label, startUtcStr, endUtcStr});
 
                 if (entryCursor.moveToFirst()) {
                     todayValue = entryCursor.getDouble(0);
-                    goalValue = entryCursor.getDouble(1);
                 }
                 entryCursor.close();
 

@@ -36,6 +36,7 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:layout_marginEnd="8dp"
+        android:saveEnabled="false"
         app:layout_constraintTop_toTopOf="@id/label_habit"
         app:layout_constraintBottom_toBottomOf="@id/label_habit"
         app:layout_constraintStart_toEndOf="@id/label_habit"
