@@ -31,7 +31,23 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+
+        navView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            // Reset the back stack when navigating to profile
+            if (itemId == R.id.navigation_profile) {
+                navController.popBackStack(R.id.navigation_profile, false);
+            }
+
+            // Prevent duplicate navigation to the same destination
+            if (navController.getCurrentDestination() != null &&
+                    navController.getCurrentDestination().getId() != itemId) {
+                navController.navigate(itemId);
+            }
+
+            return true;
+        });
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if (destination.getId() == R.id.splashFragment || destination.getId() == R.id.loginFragment || destination.getId() == R.id.signUpFragment) {

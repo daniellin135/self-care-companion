@@ -75,6 +75,12 @@
         android:label="Journal"
         tools:layout="@layout/fragment_journal_nav" />
 
+    <fragment
+        android:id="@+id/navigation_trends"
+        android:name="com.example.self_care_companion.ui.trends.TrendsFragment"
+        android:label="Trends"
+        tools:layout="@layout/fragment_trends" />
+
     <action
         android:id="@+id/action_splashFragment_to_loginFragment"
         app:destination="@id/loginFragment" />
@@ -90,4 +96,10 @@
     <action
         android:id="@+id/action_loginFragment_to_homeFragment"
         app:destination="@id/navigation_mood" />
+
+    <action
+        android:id="@+id/action_profile_to_trends"
+        app:destination="@id/navigation_trends"
+        app:popUpTo="@id/navigation_profile"
+        app:popUpToInclusive="false" />
 </navigation>
