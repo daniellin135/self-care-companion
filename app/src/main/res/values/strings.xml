@@ -34,4 +34,7 @@
     <string name="enter_units">Enter units (e.g., cals, hrs)</string>
     <string name="enter_habit_name">Enter habit name</string>
     <string name="enter_habit_value">Enter value</string>
+    <string name="increment">+</string>
+    <string name="enter_goal">Enter goal</string>
+    <string name="enter_the_value_to_add">Enter the value you would like to add!</string>
 </resources>

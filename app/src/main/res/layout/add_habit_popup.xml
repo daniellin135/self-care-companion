@@ -20,12 +20,12 @@
         android:layout_marginBottom="12dp" />
 
     <EditText
-        android:id="@+id/editHabitValue"
+        android:id="@+id/editHabitUnits"
         android:autofillHints=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_habit_value"
-        android:inputType="number"
+        android:hint="@string/enter_units"
+        android:inputType="text"
         android:textColor="#212121"
         android:textSize="16sp"
         android:fontFamily="sans-serif"
@@ -33,12 +33,12 @@
         android:layout_marginBottom="12dp" />
 
     <EditText
-        android:id="@+id/editHabitUnits"
+        android:id="@+id/editHabitGoal"
         android:autofillHints=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_units"
-        android:inputType="text"
+        android:hint="@string/enter_goal"
+        android:inputType="numberDecimal"
         android:textColor="#212121"
         android:textSize="16sp"
         android:fontFamily="sans-serif"

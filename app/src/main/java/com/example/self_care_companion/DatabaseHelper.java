@@ -9,8 +9,14 @@ import android.content.ContentValues;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
+import java.util.TimeZone;
+
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SelfCareCompanionApp.db";
@@ -45,7 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Habit (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "label TEXT, " +
-                "value INTEGER, " +
+                "value REAL, " +
+                "goal REAL, " +
                 "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, " +
                 "units TEXT)");
 
@@ -61,6 +68,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Journal");
         db.execSQL("DROP TABLE IF EXISTS Habit");
         onCreate(db);
+    }
+
+    public void resetDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS User");
+        db.execSQL("DROP TABLE IF EXISTS Mood");
+        db.execSQL("DROP TABLE IF EXISTS Journal");
+        db.execSQL("DROP TABLE IF EXISTS Habit");
+        onCreate(db);
+        db.close();
     }
 
     public void addUser(String firstName, String email, String pin) {
@@ -89,33 +106,79 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addHabit(String label, int value, String units) {
+    public void addHabit(String label, double value, String units, double goal) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("label", label);
-        values.put("value", value);
-        values.put("units", units);
-        db.insert("Habit", null, values);
+
+        String checkQuery = "SELECT id FROM Habit WHERE label = ? AND DATE(timestamp) = DATE('now')";
+        Cursor cursor = db.rawQuery(checkQuery, new String[]{label});
+
+        if (cursor.moveToFirst()) {
+            long rowId = cursor.getLong(0);
+
+            ContentValues updateValues = new ContentValues();
+            updateValues.put("value", value);
+            db.update("Habit", updateValues, "id = ?", new String[]{String.valueOf(rowId)});
+        } else {
+            ContentValues insertValues = new ContentValues();
+            insertValues.put("label", label);
+            insertValues.put("value", value);
+            insertValues.put("units", units);
+            insertValues.put("goal", goal);
+            db.insert("Habit", null, insertValues);
+        }
+
+        cursor.close();
         db.close();
     }
 
     public Set<String> getUniqueHabits() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT DISTINCT label, units FROM Habit";
-        Cursor cursor = db.rawQuery(query, null);
+
+        TimeZone easternTimeZone = TimeZone.getTimeZone("America/New_York");
+        Calendar now = Calendar.getInstance(easternTimeZone);
+
+        now.set(Calendar.HOUR_OF_DAY, 0);
+        now.set(Calendar.MINUTE, 0);
+        now.set(Calendar.SECOND, 0);
+        now.set(Calendar.MILLISECOND, 0);
+        Date startOfTodayEastern = now.getTime();
+
+        now.add(Calendar.DATE, 1);
+        Date startOfTomorrowEastern = now.getTime();
+
+        SimpleDateFormat utcFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+        utcFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String startUtcStr = utcFormat.format(startOfTodayEastern);
+        String endUtcStr = utcFormat.format(startOfTomorrowEastern);
 
         Set<String> habits = new HashSet<>();
 
-        if (cursor.moveToFirst()) {
-            do {
-                String label = cursor.getString(0);
-                String units = cursor.getString(1);
+        String habitQuery = "SELECT label, units, MAX(goal) FROM Habit GROUP BY label, units";
+        Cursor habitCursor = db.rawQuery(habitQuery, null);
 
-                String habit = label + "|" + units;
-                habits.add(habit);
-            } while (cursor.moveToNext());
+        if (habitCursor.moveToFirst()) {
+            do {
+                String label = habitCursor.getString(0);
+                String units = habitCursor.getString(1);
+                double goalValue = habitCursor.getDouble(2);
+
+                double todayValue = 0;
+
+                String entryQuery = "SELECT value FROM Habit WHERE label = ? AND timestamp >= ? AND timestamp < ?";
+                Cursor entryCursor = db.rawQuery(entryQuery, new String[]{label, startUtcStr, endUtcStr});
+
+                if (entryCursor.moveToFirst()) {
+                    todayValue = entryCursor.getDouble(0);
+                }
+                entryCursor.close();
+
+                String habitString = label + "|" + units + "|" + todayValue + "|" + goalValue;
+                habits.add(habitString);
+
+            } while (habitCursor.moveToNext());
         }
-        cursor.close();
+
+        habitCursor.close();
         db.close();
 
         return habits;
@@ -176,13 +239,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return pin;
-    }
-
-    public void deleteAllUsers() {
-        // useful when you want to test the sign up page
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("User", null, null);
-        db.close();
     }
 }
 
