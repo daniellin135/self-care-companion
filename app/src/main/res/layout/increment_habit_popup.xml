@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFF0F1">
+
+    <EditText
+        android:id="@+id/incrementHabitInput"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:autofillHints=""
+        android:hint="@string/enter_the_value_to_add"
+        android:inputType="numberDecimal"
+        android:textColor="#212121"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
+        android:backgroundTint="#CED1F8" />
+</LinearLayout>
