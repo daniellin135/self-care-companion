@@ -15,7 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.example.self_care_companion.DatabaseHelper;
 import com.example.self_care_companion.R;
-//import java.util.Calendar;
+import java.util.Calendar;
 
 public class LoginFragment extends Fragment {
 
@@ -42,19 +42,18 @@ public class LoginFragment extends Fragment {
 
             if (storedPin != null && storedPin.equals(hashedInput)) {
                 Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment); // update with your real ID
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment);
 
-                // UNCOMMENT THE FOLLOWING AFTER DEMO 1 :) this is for user scenario 2!
-//                Calendar calendar = Calendar.getInstance();
-//                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-//
-//                if (hour >= 18) {
-//                    // After 6 PM → navigate to journal prompt
-//                    Navigation.findNavController(view).navigate(R.id.navigation_journal_prompt);
-//                } else {
-//                    // Before 6 PM → default mood navigation
-//                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment); // update with your real ID
-//                }
+                Calendar calendar = Calendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+                if (hour < 17) {
+                    // Before 5 PM → navigate to check-in (User Scenario 1)
+                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment);
+                } else {
+                    // After 5 PM → navigate to journal prompt (User Scenario 2)
+                    Navigation.findNavController(view).navigate(R.id.navigation_journal_prompt);
+                }
             } else {
                 Toast.makeText(requireContext(), "Incorrect PIN", Toast.LENGTH_SHORT).show();
             }
