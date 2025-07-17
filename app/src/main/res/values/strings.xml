@@ -37,4 +37,8 @@
     <string name="increment">+</string>
     <string name="enter_goal">Enter goal</string>
     <string name="enter_the_value_to_add">Enter the value you would like to add!</string>
+    <string name="edit_delete_habit">Edit/Delete Habit</string>
+    <string name="habit_name">Habit Name</string>
+    <string name="edit_habit">Edit Habit</string>
+    <string name="delete_habit">Delete Habit</string>
 </resources>

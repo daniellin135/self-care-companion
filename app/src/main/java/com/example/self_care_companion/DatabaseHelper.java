@@ -240,5 +240,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return pin;
     }
+
+    public void updateHabitsByLabel(String oldLabel, String newLabel, String newUnits, double newGoal) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("label", newLabel);
+        values.put("units", newUnits);
+        values.put("goal", newGoal);
+
+        db.update(
+                "Habit",
+                values,
+                "label = ?",
+                new String[]{ oldLabel }
+        );
+    }
+
+    public void deleteHabitsByLabel(String label) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(
+                "Habit",
+                "label = ?",
+                new String[]{ label }
+        );
+    }
 }
 
