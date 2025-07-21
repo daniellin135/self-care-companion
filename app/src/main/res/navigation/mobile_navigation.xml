@@ -64,6 +64,12 @@
         tools:layout="@layout/fragment_profile" />
 
     <fragment
+        android:id="@+id/navigation_notification"
+        android:name="com.example.self_care_companion.ui.profile.NotificationFragment"
+        android:label="Notification"
+        tools:layout="@layout/fragment_notification" />
+
+    <fragment
         android:id="@+id/navigation_insights"
         android:name="com.example.self_care_companion.ui.insights.InsightsFragment"
         android:label="@string/insights"

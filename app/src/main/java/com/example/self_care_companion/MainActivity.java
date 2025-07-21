@@ -51,10 +51,16 @@ public class MainActivity extends AppCompatActivity {
 
         // setup morning, noon, and evening notifications
         NotificationHelper.createNotificationChannel(this);
-        NotificationScheduler.scheduleMorningNotification(this, 9, 0);  // 9:00 AM
-        NotificationScheduler.scheduleMiddayNotification(this, 12, 00);   // 12:00 PM
-        NotificationScheduler.scheduleEveningNotification(this, 17, 0); // 5:00 PM
-
+        NotificationPreferences prefs = new NotificationPreferences(this);
+        if (prefs.isMorningEnabled()) {
+            NotificationScheduler.scheduleMorningNotification(this, 9, 0);
+        }
+        if (prefs.isMiddayEnabled()) {
+            NotificationScheduler.scheduleMiddayNotification(this, 12, 0);
+        }
+        if (prefs.isEveningEnabled()) {
+            NotificationScheduler.scheduleEveningNotification(this, 17, 0);
+        }
     }
 
 
