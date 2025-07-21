@@ -77,9 +77,9 @@
 
     <fragment
         android:id="@+id/navigation_trends"
-        android:name="com.example.self_care_companion.ui.trends.TrendsFragment"
+        android:name="com.example.self_care_companion.ui.mood_trends.MoodTrendsFragment"
         android:label="Trends"
-        tools:layout="@layout/fragment_trends" />
+        tools:layout="@layout/fragment_moodtrends" />
 
     <action
         android:id="@+id/action_splashFragment_to_loginFragment"

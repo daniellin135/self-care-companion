@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Self-Care-Companion</string>
     <string name="title_splash">Splash</string>
-    <string name="title_home">HOME</string>
+    <string name="title_home">Home</string>
     <string name="title_mood">Mood</string>
     <string name="title_journal">Journal</string>
     <string name="title_habits">Habits</string>
@@ -37,4 +37,5 @@
     <string name="increment">+</string>
     <string name="enter_goal">Enter goal</string>
     <string name="enter_the_value_to_add">Enter the value you would like to add!</string>
+    <string name="mood_trends">TRENDS 📈</string>
 </resources>

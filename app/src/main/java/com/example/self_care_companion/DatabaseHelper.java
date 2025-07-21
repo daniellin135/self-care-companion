@@ -16,6 +16,8 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.Map;
+import java.util.HashMap;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -240,5 +242,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return pin;
     }
+
+    public Map<String, Integer> getMoodCountsFiltered(int pastDays) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Map<String, Integer> moodMap = new HashMap<>();
+
+        long currentTime = System.currentTimeMillis();
+        long pastTime = currentTime - (pastDays * 24 * 60 * 60 * 1000L);
+
+        Cursor cursor = db.rawQuery(
+                "SELECT mood, COUNT(*) FROM Mood WHERE timestamp >= ? GROUP BY mood",
+                new String[]{String.valueOf(pastTime)}
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                String mood = cursor.getString(0);
+                int count = cursor.getInt(1);
+                moodMap.put(mood, count);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return moodMap;
+    }
+
 }
 
