@@ -3,6 +3,9 @@ package com.example.self_care_companion;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.self_care_companion.Notifications.NotificationHelper;
+import com.example.self_care_companion.Notifications.NotificationPreferences;
+import com.example.self_care_companion.Notifications.NotificationScheduler;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
-import com.example.self_care_companion.NotificationPreferences;
+import com.example.self_care_companion.Notifications.NotificationPreferences;
 import com.example.self_care_companion.R;
 
 public class NotificationFragment extends Fragment {

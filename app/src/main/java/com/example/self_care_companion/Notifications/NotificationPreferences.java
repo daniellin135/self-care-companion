@@ -1,4 +1,4 @@
-package com.example.self_care_companion;
+package com.example.self_care_companion.Notifications;
 
 import android.content.Context;
 import android.content.SharedPreferences;

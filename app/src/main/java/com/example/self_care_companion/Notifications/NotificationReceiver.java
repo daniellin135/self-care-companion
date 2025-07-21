@@ -1,4 +1,4 @@
-package com.example.self_care_companion;
+package com.example.self_care_companion.Notifications;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,6 +8,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.core.app.NotificationCompat;
+
+import com.example.self_care_companion.DatabaseHelper;
+import com.example.self_care_companion.MainActivity;
+import com.example.self_care_companion.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
