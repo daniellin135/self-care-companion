@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
+import com.example.self_care_companion.R;
 import com.example.self_care_companion.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
@@ -23,6 +25,9 @@ public class ProfileFragment extends Fragment {
 
         // You can still set up button listeners here if you want
         // e.g. binding.btnViewInsights.setOnClickListener(...);
+        binding.btnNotifications.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.navigation_notification);
+        });
 
         return root;
     }

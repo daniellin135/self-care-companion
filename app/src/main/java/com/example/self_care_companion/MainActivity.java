@@ -3,6 +3,9 @@ package com.example.self_care_companion;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.self_care_companion.Notifications.NotificationHelper;
+import com.example.self_care_companion.Notifications.NotificationPreferences;
+import com.example.self_care_companion.Notifications.NotificationScheduler;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +51,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         databaseHelper = new DatabaseHelper(this);
+
+        // setup morning, noon, and evening notifications
+        NotificationHelper.createNotificationChannel(this);
+        NotificationPreferences prefs = new NotificationPreferences(this);
+        if (prefs.isMorningEnabled()) {
+            NotificationScheduler.scheduleMorningNotification(this, 9, 0);
+        }
+        if (prefs.isMiddayEnabled()) {
+            NotificationScheduler.scheduleMiddayNotification(this, 12, 0);
+        }
+        if (prefs.isEveningEnabled()) {
+            NotificationScheduler.scheduleEveningNotification(this, 17, 0);
+        }
     }
 
 
