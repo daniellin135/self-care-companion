@@ -28,7 +28,7 @@
                 android:backgroundTint="#CED1F8"
                 android:src="@drawable/ic_home_black_24dp"
                 android:scaleType="centerInside"
-                android:contentDescription="Home button" />
+                android:contentDescription="@string/home_button" />
         </FrameLayout>
 
         <!-- CHECK-IN Title -->
@@ -37,7 +37,7 @@
             style="@style/TextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CHECK-IN"
+            android:text="@string/check_in_caps"
             android:textColor="#212121"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
@@ -49,7 +49,7 @@
             style="@style/TextPrompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Want to jot down what’s on your mind?"
+            android:text="@string/journal_check_in_prompt"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center_horizontal" />
 
@@ -58,7 +58,7 @@
             android:id="@+id/journalInput"
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:hint="Enter text..."
+            android:hint="@string/enter_text_prompt"
             android:gravity="top"
             android:background="#FFFFFF"
             android:inputType="textMultiLine"
@@ -75,7 +75,7 @@
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SAVE"
+            android:text="@string/save"
             android:textColor="#212121"
             android:backgroundTint="#CED1F8"
             android:layout_gravity="end"

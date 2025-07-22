@@ -13,13 +13,13 @@
         android:layout_height="170dp"
         android:src="@drawable/self_care_logo"
         android:layout_marginBottom="24dp"
-        android:contentDescription="Logo" />
+        android:contentDescription="@string/logo" />
 
     <TextView
         style="@style/TextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SELF-CARE\nCOMPANION"
+        android:text="@string/self_care_companion_new_line"
         android:textAlignment="center"
         android:textColor="#212121"
         android:lineSpacingExtra="4dp"
@@ -29,7 +29,7 @@
         style="@style/TextBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your daily\nwellness partner"
+        android:text="@string/app_description"
         android:textAlignment="center"
         android:textColor="#212121"
         android:layout_marginBottom="36dp" />
@@ -39,7 +39,7 @@
         android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SIGN UP"
+        android:text="@string/sign_up_caps"
         android:backgroundTint="#D0D8FF"
         android:textColor="#212121"
         android:layout_marginStart="24dp"
@@ -53,7 +53,7 @@
         android:id="@+id/btn_log_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LOG IN"
+        android:text="@string/log_in_caps"
         android:backgroundTint="#D0D8FF"
         android:textColor="#212121"
         android:layout_marginStart="24dp"
