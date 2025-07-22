@@ -4,9 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.AutoCompleteTextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -25,7 +24,7 @@ import java.util.Map;
 public class MoodTrendsFragment extends Fragment {
 
     private PieChart pieChart;
-    private Spinner dateRangeSpinner;
+    private AutoCompleteTextView dateRangeDropdown;
     private int selectedDays = 1; // Default to past 1 day
 
     @Override
@@ -34,45 +33,36 @@ public class MoodTrendsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_moodtrends, container, false);
 
         pieChart = view.findViewById(R.id.pieChart);
-        dateRangeSpinner = view.findViewById(R.id.dateRangeSpinner);
+        dateRangeDropdown = view.findViewById(R.id.dateRangeDropdown);
 
-        setupSpinner();
+        setupDropdown();
         loadPieChartData(selectedDays);
 
         return view;
     }
 
-    private void setupSpinner() {
+    private void setupDropdown() {
         String[] dateRanges = {"Past 1 Day", "Past 3 Days", "Past Week", "Past Month"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                requireContext(), android.R.layout.simple_spinner_item, dateRanges);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dateRangeSpinner.setAdapter(adapter);
+                requireContext(), android.R.layout.simple_list_item_1, dateRanges);
+        dateRangeDropdown.setAdapter(adapter);
 
-        dateRangeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        selectedDays = 1;
-                        break;
-                    case 1:
-                        selectedDays = 3;
-                        break;
-                    case 2:
-                        selectedDays = 7;
-                        break;
-                    case 3:
-                        selectedDays = 30;
-                        break;
-                }
-                loadPieChartData(selectedDays);
+        dateRangeDropdown.setOnItemClickListener((parent, view, position, id) -> {
+            switch (position) {
+                case 0:
+                    selectedDays = 1;
+                    break;
+                case 1:
+                    selectedDays = 3;
+                    break;
+                case 2:
+                    selectedDays = 7;
+                    break;
+                case 3:
+                    selectedDays = 30;
+                    break;
             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Do nothing
-            }
+            loadPieChartData(selectedDays);
         });
     }
 
