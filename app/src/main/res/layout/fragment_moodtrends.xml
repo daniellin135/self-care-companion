@@ -42,20 +42,29 @@
             android:padding="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
-    <!-- Pie Chart -->
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pieChart"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/dateRangeLayout"
+        android:layout_width="411dp"
+        android:layout_height="360dp"
+        app:layout_constraintBottom_toTopOf="@id/btnViewHabits"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateRangeLayout" />
+
+    <Button
+        android:id="@+id/btnViewHabits"
+        style="@style/TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Habit Insights"
+        android:layout_margin="16dp"
+        android:backgroundTint="#CED1F8"
+        android:textColor="#212121"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/pieChart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp" />
-
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

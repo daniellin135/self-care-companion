@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import androidx.fragment.app.Fragment;
 
@@ -21,6 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.github.mikephil.charting.formatter.PercentFormatter;
+
+import com.example.self_care_companion.ui.habit_trends.HabitTrendsFragment;
+
 public class MoodTrendsFragment extends Fragment {
 
     private PieChart pieChart;
@@ -34,6 +41,14 @@ public class MoodTrendsFragment extends Fragment {
 
         pieChart = view.findViewById(R.id.pieChart);
         dateRangeDropdown = view.findViewById(R.id.dateRangeDropdown);
+
+        Button btnViewHabits = view.findViewById(R.id.btnViewHabits);
+
+        // Set click listener to navigate
+        btnViewHabits.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+            navController.navigate(R.id.action_moodTrendsFragment_to_habitTrendsFragment);
+        });
 
         setupDropdown();
         loadPieChartData(selectedDays);
@@ -77,11 +92,14 @@ public class MoodTrendsFragment extends Fragment {
         PieDataSet dataSet = new PieDataSet(entries, "Mood Distribution");
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         PieData pieData = new PieData(dataSet);
+        pieData.setValueFormatter(new PercentFormatter(pieChart));
 
+        pieChart.clear();
         pieChart.setData(pieData);
         pieChart.setUsePercentValues(true);
         pieChart.setDrawEntryLabels(true);
         pieChart.getDescription().setEnabled(false);
+        pieChart.getLegend().setEnabled(false);
         pieChart.animateY(1000);
         pieChart.invalidate();
     }

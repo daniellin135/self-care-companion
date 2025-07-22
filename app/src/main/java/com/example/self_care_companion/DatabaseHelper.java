@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.TimeZone;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -247,13 +248,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Map<String, Integer> moodMap = new HashMap<>();
 
-        long currentTime = System.currentTimeMillis();
-        long pastTime = currentTime - (pastDays * 24 * 60 * 60 * 1000L);
+        // Convert pastDays into a string like "-7 days"
+        String pastDaysString = "-" + pastDays + " days";
 
-        Cursor cursor = db.rawQuery(
-                "SELECT mood, COUNT(*) FROM Mood WHERE timestamp >= ? GROUP BY mood",
-                new String[]{String.valueOf(pastTime)}
-        );
+        String query = "SELECT mood, COUNT(*) " +
+                "FROM Mood " +
+                "WHERE DATE(timestamp) >= DATE('now', ?) " +
+                "GROUP BY mood";
+
+        Cursor cursor = db.rawQuery(query, new String[]{pastDaysString});
 
         if (cursor.moveToFirst()) {
             do {
@@ -262,8 +265,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 moodMap.put(mood, count);
             } while (cursor.moveToNext());
         }
+
         cursor.close();
         return moodMap;
+    }
+
+
+    public Map<String, Double> getHabitValues(String label, int pastDays) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Map<String, Double> habitData = new LinkedHashMap<>();
+
+        String query = "SELECT DATE(timestamp) as date, value FROM Habit " +
+                "WHERE label = ? AND DATE(timestamp) >= DATE('now', ?) " +
+                "ORDER BY DATE(timestamp) ASC";
+
+        String pastDaysString = "-" + pastDays + " day";
+        Cursor cursor = db.rawQuery(query, new String[]{label, pastDaysString});
+
+        if (cursor.moveToFirst()) {
+            do {
+                String date = cursor.getString(0);
+                double value = cursor.getDouble(1);
+                habitData.put(date, value);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return habitData;
     }
 
 }

@@ -76,10 +76,16 @@
         tools:layout="@layout/fragment_journal_nav" />
 
     <fragment
-        android:id="@+id/navigation_trends"
+        android:id="@+id/navigation_moodtrends"
         android:name="com.example.self_care_companion.ui.mood_trends.MoodTrendsFragment"
-        android:label="Trends"
+        android:label="Mood Trends"
         tools:layout="@layout/fragment_moodtrends" />
+
+    <fragment
+        android:id="@+id/navigation_habittrends"
+        android:name="com.example.self_care_companion.ui.habit_trends.HabitTrendsFragment"
+        android:label="Habit Trends"
+        tools:layout="@layout/fragment_habittrends" />
 
     <action
         android:id="@+id/action_splashFragment_to_loginFragment"
@@ -99,7 +105,15 @@
 
     <action
         android:id="@+id/action_profile_to_trends"
-        app:destination="@id/navigation_trends"
+        app:destination="@id/navigation_moodtrends"
         app:popUpTo="@id/navigation_profile"
         app:popUpToInclusive="false" />
+
+    <action
+        android:id="@+id/action_moodTrendsFragment_to_habitTrendsFragment"
+        app:destination="@id/navigation_habittrends" />
+
+    <action
+        android:id="@+id/action_habitTrendsFragment_to_moodTrendsFragment"
+        app:destination="@id/navigation_moodtrends" />
 </navigation>

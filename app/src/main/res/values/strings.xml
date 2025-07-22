@@ -37,5 +37,6 @@
     <string name="increment">+</string>
     <string name="enter_goal">Enter goal</string>
     <string name="enter_the_value_to_add">Enter the value you would like to add!</string>
-    <string name="mood_trends">TRENDS 📈</string>
+    <string name="mood_trends">MOOD TRENDS 📈</string>
+    <string name="habit_trends">HABIT TRENDS 📈</string>
 </resources>
