@@ -12,7 +12,7 @@
         style="@style/TextPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter your PIN"
+        android:text="@string/enter_pin"
         android:textColor="#212121"
         android:layout_marginBottom="16dp" />
 
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberPassword"
-        android:hint="PIN"
+        android:hint="@string/pin"
         android:textColor="#212121"
         android:textSize="16sp"
         android:fontFamily="sans-serif"
@@ -32,7 +32,7 @@
         style="@style/TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:layout_marginTop="20dp"
         android:backgroundTint="#CED1F8"
         android:textColor="#212121"

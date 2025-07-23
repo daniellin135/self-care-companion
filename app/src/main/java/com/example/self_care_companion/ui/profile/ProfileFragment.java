@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.self_care_companion.R;
 import com.example.self_care_companion.databinding.FragmentProfileBinding;
 import com.example.self_care_companion.R;
 
@@ -27,6 +28,8 @@ public class ProfileFragment extends Fragment {
         // e.g. binding.btnViewInsights.setOnClickListener(...);
         binding.btnViewInsights.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_profile_to_trends);
+        binding.btnNotifications.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.navigation_notification);
         });
 
         return root;
