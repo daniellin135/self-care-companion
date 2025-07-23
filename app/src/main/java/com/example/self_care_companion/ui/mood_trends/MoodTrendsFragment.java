@@ -1,5 +1,6 @@
 package com.example.self_care_companion.ui.mood_trends;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,11 +57,19 @@ public class MoodTrendsFragment extends Fragment {
         return view;
     }
 
+    private static final int[] CUSTOM_PASTEL_COLORS = new int[]{
+            Color.rgb(64, 89, 128), Color.rgb(149, 165, 124), Color.rgb(217, 184, 162),
+            Color.rgb(191, 134, 134), Color.rgb(179, 48, 80), Color.rgb(120, 120, 200)
+    };
+
     private void setupDropdown() {
         String[] dateRanges = {"Past 1 Day", "Past 3 Days", "Past Week", "Past Month"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 requireContext(), android.R.layout.simple_list_item_1, dateRanges);
         dateRangeDropdown.setAdapter(adapter);
+
+        selectedDays = 1;
+        dateRangeDropdown.setText("Past 1 Day", false);
 
         dateRangeDropdown.setOnItemClickListener((parent, view, position, id) -> {
             switch (position) {
@@ -90,7 +99,7 @@ public class MoodTrendsFragment extends Fragment {
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "Mood Distribution");
-        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataSet.setColors(CUSTOM_PASTEL_COLORS);
         PieData pieData = new PieData(dataSet);
         pieData.setValueFormatter(new PercentFormatter(pieChart));
 
