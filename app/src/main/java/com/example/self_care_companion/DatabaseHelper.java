@@ -187,6 +187,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return habits;
     }
 
+    public Set<String> getUniqueHabitNames() {
+        Set<String> habits = getUniqueHabits();
+        Set<String> habitNames = new HashSet<>();
+
+        for (String habit : habits) {
+            String[] parts = habit.split("\\|");
+            if (parts.length > 0) {
+                habitNames.add(parts[0]); // first part is the label
+            }
+        }
+        return habitNames;
+    }
+
     public String getMostFrequentMood() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT mood, COUNT(*) as count FROM Mood " +
@@ -294,6 +307,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return habitData;
     }
+
+    public double getHabitGoal(String habitLabel) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT MAX(goal) FROM Habit WHERE label = ?", new String[]{habitLabel});
+        double goal = 0;
+        if (cursor.moveToFirst()) {
+            goal = cursor.getDouble(0);
+        }
+        cursor.close();
+        db.close();
+        return goal;
+    }
+
 
 }
 
