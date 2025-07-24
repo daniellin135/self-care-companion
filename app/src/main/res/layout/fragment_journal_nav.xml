@@ -12,24 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Home Button -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/homeButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#CED1F8"
-                android:src="@drawable/ic_home_black_24dp"
-                android:scaleType="centerInside"
-                android:contentDescription="@string/home_button" />
-        </FrameLayout>
-
         <!-- CHECK-IN Title -->
         <TextView
             android:id="@+id/titleText"

@@ -37,10 +37,6 @@ public class MoodFragment extends Fragment {
         binding = FragmentMoodBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        binding.homeButton.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.navigation_home);
-        });
-
         binding.nextButton.setOnClickListener(v -> {
             List<String> moods = MoodViewModel.getSelectedMoods().getValue();
 
