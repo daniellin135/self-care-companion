@@ -25,18 +25,14 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // You can still set up button listeners here if you want
-        // e.g. binding.btnViewInsights.setOnClickListener(...);
-        binding.btnNotifications.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.navigation_notification);
-        });
+        // Button listeners
+        binding.btnViewInsights.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_profile_to_trends)
+        );
 
-        // Help and Support button opens CMHA crisis page
-        binding.btnHelpSupport.setOnClickListener(v -> {
-            String url = "https://cmha.ca/find-help/if-you-are-in-crisis/";
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
-        });
+        binding.btnNotifications.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.navigation_notification)
+        );
 
         return root;
     }

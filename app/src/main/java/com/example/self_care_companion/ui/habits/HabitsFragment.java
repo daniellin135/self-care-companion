@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.self_care_companion.R;
 import com.example.self_care_companion.databinding.FragmentHabitsBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Set;
 
@@ -253,6 +254,7 @@ public class HabitsFragment extends Fragment {
                 if (!valueText.isEmpty()) {
                     double value = Double.parseDouble(valueText);
                     databaseHelper.addHabit(labelValue, value, unitString, goal);
+                    Snackbar.make(binding.getRoot(), "Your habit progress has been saved!", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });

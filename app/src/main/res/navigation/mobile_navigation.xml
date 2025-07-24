@@ -14,12 +14,12 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.self_care_companion.ui.login.LoginFragment"
-        android:label="Login" />
+        android:label="@string/login" />
 
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.self_care_companion.ui.signup.SignUpFragment"
-        android:label="Sign Up"
+        android:label="@string/sign_up"
         tools:layout="@layout/fragment_sign_up" />
 
     <fragment
@@ -66,20 +66,32 @@
     <fragment
         android:id="@+id/navigation_notification"
         android:name="com.example.self_care_companion.ui.profile.NotificationFragment"
-        android:label="Notification"
+        android:label="@string/title_notification"
         tools:layout="@layout/fragment_notification" />
 
     <fragment
         android:id="@+id/navigation_insights"
         android:name="com.example.self_care_companion.ui.insights.InsightsFragment"
-        android:label="@string/insights"
+        android:label="@string/title_insights"
         tools:layout="@layout/fragment_insights" />
 
     <fragment
         android:id="@+id/navigation_journal_nobutton"
         android:name="com.example.self_care_companion.ui.journal.JournalNavFragment"
-        android:label="Journal"
+        android:label="@string/title_journal"
         tools:layout="@layout/fragment_journal_nav" />
+
+    <fragment
+        android:id="@+id/navigation_moodtrends"
+        android:name="com.example.self_care_companion.ui.mood_trends.MoodTrendsFragment"
+        android:label="Mood Trends"
+        tools:layout="@layout/fragment_moodtrends" />
+
+    <fragment
+        android:id="@+id/navigation_habittrends"
+        android:name="com.example.self_care_companion.ui.habit_trends.HabitTrendsFragment"
+        android:label="Habit Trends"
+        tools:layout="@layout/fragment_habittrends" />
 
     <action
         android:id="@+id/action_splashFragment_to_loginFragment"
@@ -96,4 +108,18 @@
     <action
         android:id="@+id/action_loginFragment_to_homeFragment"
         app:destination="@id/navigation_mood" />
+
+    <action
+        android:id="@+id/action_profile_to_trends"
+        app:destination="@id/navigation_moodtrends"
+        app:popUpTo="@id/navigation_profile"
+        app:popUpToInclusive="false" />
+
+    <action
+        android:id="@+id/action_moodTrendsFragment_to_habitTrendsFragment"
+        app:destination="@id/navigation_habittrends" />
+
+    <action
+        android:id="@+id/action_habitTrendsFragment_to_moodTrendsFragment"
+        app:destination="@id/navigation_moodtrends" />
 </navigation>

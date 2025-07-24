@@ -25,7 +25,7 @@
             style="@style/TextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PROFILE"
+            android:text="@string/profile_title_caps"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="100dp"/>
 
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#CED1F8"
             android:textColor="#000000"
-            android:text="VIEW INSIGHTS"
+            android:text="@string/view_insights_button"
             android:layout_marginTop="90dp"/> <!-- space from button 1 -->
 
         <Button
@@ -44,7 +44,7 @@
             style="@style/TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NOTIFICATIONS"
+            android:text="@string/notifications_button"
             android:backgroundTint="#CED1F8"
             android:textColor="#000000"
             android:layout_marginTop="30dp" /> <!-- space from button 1 -->
@@ -54,7 +54,7 @@
             style="@style/TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SETTINGS"
+            android:text="@string/settings_button"
             android:backgroundTint="#CED1F8"
             android:textColor="#000000"
             android:layout_marginTop="30dp" /> <!-- more space from button 2 -->

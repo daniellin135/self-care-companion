@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Notification Settings"
+        android:text="@string/notification_settings"
         style="@style/TextTitle"
         android:layout_marginBottom="24dp" />
 
@@ -35,14 +35,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Morning Check-in (9:00 AM)"
+                android:text="@string/morning_notification_title"
                 android:textColor="#212121"
                 style="@style/TextCaption" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Good morning! Would you like to check-in?"
+                android:text="@string/morning_notification_text"
                 style="@style/TextBody" />
 
         </LinearLayout>
@@ -71,14 +71,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Habit Reminders (12:00 PM)"
+                android:text="@string/habit_notification_title"
                 android:textColor="#212121"
                 style="@style/TextCaption" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Personalized reminders about your habit goals"
+                android:text="@string/habit_notification_text"
                 style="@style/TextBody" />
 
         </LinearLayout>
@@ -106,14 +106,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Evening Reflection (5:00 PM)"
+                android:text="@string/evening_notification_title"
                 android:textColor="#212121"
                 style="@style/TextCaption" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Good evening! Would you like to reflect?"
+                android:text="@string/evening_notification_text"
                 style="@style/TextBody" />
 
         </LinearLayout>
@@ -124,5 +124,23 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <!-- Spacer -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="32dp"/>
+
+    <Button
+        style="@style/TextButton"
+        android:id="@+id/backButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="← BACK"
+        android:textColor="#212121"
+        android:backgroundTint="#CED1F8"
+        android:layout_marginEnd="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

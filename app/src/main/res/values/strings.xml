@@ -1,19 +1,33 @@
 <resources>
+    <!-- titles and app name -->
     <string name="app_name">Self-Care-Companion</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="logo">Logo</string>
     <string name="title_splash">Splash</string>
-    <string name="title_home">HOME</string>
+    <string name="title_home">Home</string>
     <string name="title_mood">Mood</string>
     <string name="title_journal">Journal</string>
     <string name="title_habits">Habits</string>
     <string name="title_profile">Profile</string>
-    <string name="insights">Insights</string>
+    <string name="title_insights">Insights</string>
+    <string name="title_notification">Notification</string>
+
+    <!-- home page -->
+    <string name="self_care_companion">SELF-CARE COMPANION</string>
+    <string name="hello">Hello!</string>
+    <string name="check_in">Check In</string>
+    <string name="track_habits">Track Habits</string>
+    <string name="journal_button">Journal</string>
+    <string name="logo_image">logo_image</string>
+
+    <!-- main buttons -->
     <string name="home_button">Home Button</string>
     <string name="back_button">← BACK</string>
     <string name="next_button">NEXT →</string>
-    <string name="journal_prompt">Would you like to reflect on today?</string>
-    <string name="journal_prompt_text">Good evening!</string>
-    <string name="yes_btn">Yes please</string>
-    <string name="no_btn">Not right now</string>
+    <string name="save">SAVE</string>
+
+    <!-- mood check-in page -->
+    <string name="check_in_caps">CHECK-IN</string>
     <string name="mood_prompt">How are you feeling today?</string>
     <string name="mood_option_1">Happy :)</string>
     <string name="mood_option_2">Sad :(</string>
@@ -21,11 +35,16 @@
     <string name="mood_option_4">Stressed :|</string>
     <string name="mood_option_5">Calm ^_^</string>
     <string name="mood_option_6">Anxious >:(</string>
-    <string name="self_care_companion">SELF-CARE COMPANION</string>
-    <string name="hello">Hello!</string>
-    <string name="check_in">Check In</string>
-    <string name="track_habits">Track Habits</string>
-    <string name="journal_button">Journal</string>
+
+    <!-- journal pages -->
+    <string name="journal_prompt_text">Good evening!</string>
+    <string name="journal_prompt">Would you like to reflect on today?</string>
+    <string name="yes_btn">Yes please</string>
+    <string name="no_btn">Not right now</string>
+    <string name="journal_check_in_prompt">Want to jot down what’s on your mind?</string>
+    <string name="enter_text_prompt">Enter text…</string>
+
+    <!-- habit page -->
     <string name="habit_tracker">HABIT TRACKER</string>
     <string name="unit">unit</string>
     <string name="new_habit">New Habit</string>
@@ -42,4 +61,35 @@
     <string name="edit_habit">Edit Habit</string>
     <string name="delete_habit">Delete Habit</string>
     <string name="need_immediate_support">Need Immediate Support?</string>
+
+    <!-- splash, signup and login pages -->
+    <string name="self_care_companion_new_line">SELF-CARE\nCOMPANION</string>
+    <string name="app_description">Your daily\nwellness partner</string>
+    <string name="sign_up_caps">SIGN UP</string>
+    <string name="log_in_caps">LOG IN</string>
+    <string name="create_account">Create Account</string>
+    <string name="first_name">First Name</string>
+    <string name="email">Email</string>
+    <string name="pin_field">Pin</string>
+    <string name="enter_pin">Enter your PIN</string>
+    <string name="pin">PIN</string>
+    <string name="login">Login</string>
+
+    <!-- profile pages -->
+    <string name="profile_title_caps">PROFILE</string>
+    <string name="view_insights_button">VIEW INSIGHTS</string>
+    <string name="notifications_button">NOTIFICATIONS</string>
+    <string name="settings_button">SETTINGS</string>
+    <string name="help_and_support_button">HELP AND SUPPORT</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="morning_notification_title">Morning Check-in (9:00 AM)</string>
+    <string name="morning_notification_text">Good morning! Would you like to check-in?</string>
+    <string name="habit_notification_title">Habit Reminders (12:00 PM)</string>
+    <string name="habit_notification_text">Personalized reminders about your habit goals</string>
+    <string name="evening_notification_title">Evening Reflection (5:00 PM)</string>
+    <string name="evening_notification_text">Good evening! Would you like to reflect?</string>
+
+    <!-- trends page -->
+    <string name="mood_trends">MOOD TRENDS 📈</string>
+    <string name="habit_trends">HABIT TRENDS 📈</string>
 </resources>

@@ -36,6 +36,11 @@ public class NotificationFragment extends Fragment {
         eveningSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
                 prefs.setEveningEnabled(isChecked));
 
+        View backButton = view.findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager().popBackStack();
+        });
+
         return view;
     }
 }

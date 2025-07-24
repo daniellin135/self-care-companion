@@ -26,14 +26,14 @@ public class JournalPromptFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_journal_prompt, container, false);
 
-        ImageButton homeButton = view.findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(v);
-            BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
-
-            navController.popBackStack(R.id.navigation_home, false);
-            navView.setSelectedItemId(R.id.navigation_home);  // triggers nav + syncs bottom nav UI
-        });
+//        ImageButton homeButton = view.findViewById(R.id.homeButton);
+//        homeButton.setOnClickListener(v -> {
+//            NavController navController = Navigation.findNavController(v);
+//            BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
+//
+//            navController.popBackStack(R.id.navigation_home, false);
+//            navView.setSelectedItemId(R.id.navigation_home);  // triggers nav + syncs bottom nav UI
+//        });
 
         Button yesButton = view.findViewById(R.id.yes_btn);
         Button noButton = view.findViewById(R.id.no_btn);

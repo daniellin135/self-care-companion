@@ -25,15 +25,6 @@ public class JournalNavFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_journal_nav, container, false);
 
-        ImageButton homeButton = view.findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(v);
-            BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
-
-            navController.popBackStack(R.id.navigation_home, false);
-            navView.setSelectedItemId(R.id.navigation_home);  // triggers nav + syncs bottom nav UI
-        });
-
         return view;
     }
 }

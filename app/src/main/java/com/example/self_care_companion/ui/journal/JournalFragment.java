@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.example.self_care_companion.R;
 import com.example.self_care_companion.databinding.FragmentJournalBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class JournalFragment extends Fragment {
 
@@ -27,15 +28,14 @@ public class JournalFragment extends Fragment {
 
         binding = FragmentJournalBinding.inflate(inflater, container, false);
 
-        binding.homeButton.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.navigation_home);
-        });
-
         binding.saveButton.setOnClickListener(v -> {
             String journalEntry = binding.journalInput.getText().toString();
 
             if (!journalEntry.isEmpty()) {
                 databaseHelper.addJournalEntry(journalEntry);
+                Snackbar.make(binding.getRoot(), "Your journal entry has been saved!", Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(binding.getRoot(), "Please write something before saving!", Snackbar.LENGTH_SHORT).show();
             }
         });
 
