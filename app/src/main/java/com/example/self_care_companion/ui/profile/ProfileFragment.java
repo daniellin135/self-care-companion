@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.content.Intent;
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -22,7 +25,7 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Button listeners
+        // Existing button listeners
         binding.btnViewInsights.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_profile_to_trends)
         );
@@ -30,6 +33,13 @@ public class ProfileFragment extends Fragment {
         binding.btnNotifications.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.navigation_notification)
         );
+
+        // Help button opens CMHA crisis page
+        binding.btnHelpSupport.setOnClickListener(v -> {
+            String url = "https://cmha.ca/find-help/if-you-are-in-crisis/";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        });
 
         return root;
     }

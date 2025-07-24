@@ -60,6 +60,7 @@
     <string name="habit_name">Habit Name</string>
     <string name="edit_habit">Edit Habit</string>
     <string name="delete_habit">Delete Habit</string>
+    <string name="need_immediate_support">Need Immediate Support?</string>
 
     <!-- splash, signup and login pages -->
     <string name="self_care_companion_new_line">SELF-CARE\nCOMPANION</string>
