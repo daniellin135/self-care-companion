@@ -16,6 +16,9 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -184,6 +187,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return habits;
     }
 
+    public Set<String> getUniqueHabitNames() {
+        Set<String> habits = getUniqueHabits();
+        Set<String> habitNames = new HashSet<>();
+
+        for (String habit : habits) {
+            String[] parts = habit.split("\\|");
+            if (parts.length > 0) {
+                habitNames.add(parts[0]); // first part is the label
+            }
+        }
+        return habitNames;
+    }
+
     public String getMostFrequentMood() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT mood, COUNT(*) as count FROM Mood " +
@@ -240,6 +256,70 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return pin;
     }
+
+    public Map<String, Integer> getMoodCountsFiltered(int pastDays) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Map<String, Integer> moodMap = new HashMap<>();
+
+        // Convert pastDays into a string like "-7 days"
+        String pastDaysString = "-" + pastDays + " days";
+
+        String query = "SELECT mood, COUNT(*) " +
+                "FROM Mood " +
+                "WHERE DATE(timestamp) >= DATE('now', ?) " +
+                "GROUP BY mood";
+
+        Cursor cursor = db.rawQuery(query, new String[]{pastDaysString});
+
+        if (cursor.moveToFirst()) {
+            do {
+                String mood = cursor.getString(0);
+                int count = cursor.getInt(1);
+                moodMap.put(mood, count);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return moodMap;
+    }
+
+
+    public Map<String, Double> getHabitValues(String label, int pastDays) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Map<String, Double> habitData = new LinkedHashMap<>();
+
+        String query = "SELECT DATE(timestamp) as date, value FROM Habit " +
+                "WHERE label = ? AND DATE(timestamp) >= DATE('now', ?) " +
+                "ORDER BY DATE(timestamp) ASC";
+
+        String pastDaysString = "-" + pastDays + " day";
+        Cursor cursor = db.rawQuery(query, new String[]{label, pastDaysString});
+
+        if (cursor.moveToFirst()) {
+            do {
+                String date = cursor.getString(0);
+                double value = cursor.getDouble(1);
+                habitData.put(date, value);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return habitData;
+    }
+
+    public double getHabitGoal(String habitLabel) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT MAX(goal) FROM Habit WHERE label = ?", new String[]{habitLabel});
+        double goal = 0;
+        if (cursor.moveToFirst()) {
+            goal = cursor.getDouble(0);
+        }
+        cursor.close();
+        db.close();
+        return goal;
+    }
+
 
     public void updateHabitsByLabel(String oldLabel, String newLabel, String newUnits, double newGoal) {
         SQLiteDatabase db = this.getWritableDatabase();

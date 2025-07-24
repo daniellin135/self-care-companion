@@ -87,4 +87,8 @@
     <string name="habit_notification_text">Personalized reminders about your habit goals</string>
     <string name="evening_notification_title">Evening Reflection (5:00 PM)</string>
     <string name="evening_notification_text">Good evening! Would you like to reflect?</string>
+
+    <!-- trends page -->
+    <string name="mood_trends">MOOD TRENDS 📈</string>
+    <string name="habit_trends">HABIT TRENDS 📈</string>
 </resources>
