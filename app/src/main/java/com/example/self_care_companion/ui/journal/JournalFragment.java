@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.example.self_care_companion.R;
 import com.example.self_care_companion.databinding.FragmentJournalBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class JournalFragment extends Fragment {
 
@@ -32,6 +33,9 @@ public class JournalFragment extends Fragment {
 
             if (!journalEntry.isEmpty()) {
                 databaseHelper.addJournalEntry(journalEntry);
+                Snackbar.make(binding.getRoot(), "Your journal entry has been saved!", Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(binding.getRoot(), "Please write something before saving!", Snackbar.LENGTH_SHORT).show();
             }
         });
 

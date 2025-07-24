@@ -24,32 +24,64 @@
         android:layout_marginTop="80dp" />
 
     <!-- Container for Habits -->
-    <LinearLayout
-        android:id="@+id/habitContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="35dp"
+    <ScrollView
+        android:id="@+id/scrollHabits"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@id/text_Habits"
+        app:layout_constraintBottom_toTopOf="@id/buttonContainer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_max="350dp">
 
-    <!-- Add Habit Button -->
-    <Button
-        style="@style/TextButton"
-        android:id="@+id/buttonAddHabit"
+        <LinearLayout
+            android:id="@+id/habitContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/buttonContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_habit"
-        android:textAllCaps="true"
-        android:textColor="#212121"
-        android:backgroundTint="#CED1F8"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintTop_toBottomOf="@id/habitContainer"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/scrollHabits"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Add Habit Button -->
+        <Button
+            style="@style/TextButton"
+            android:id="@+id/buttonAddHabit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_habit"
+            android:textAllCaps="true"
+            android:textColor="#212121"
+            android:backgroundTint="#CED1F8"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+        <!-- Edit Habit Button -->
+        <Button
+            style="@style/TextButton"
+            android:id="@+id/buttonEditHabit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_delete_habit"
+            android:textAllCaps="true"
+            android:textColor="#212121"
+            android:backgroundTint="#CED1F8"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginStart="16dp" />
+
+    </LinearLayout>
+
 
     <!-- Save Habits Button -->
     <Button
@@ -64,7 +96,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/buttonAddHabit"
+        app:layout_constraintTop_toBottomOf="@id/buttonContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
