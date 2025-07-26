@@ -79,7 +79,7 @@
     <string name="profile_title_caps">PROFILE</string>
     <string name="view_insights_button">VIEW INSIGHTS</string>
     <string name="notifications_button">NOTIFICATIONS</string>
-    <string name="settings_button">SETTINGS</string>
+    <string name="sign_out_button">SIGN OUT</string>
     <string name="help_and_support_button">HELP AND SUPPORT</string>
     <string name="notification_settings">Notification Settings</string>
     <string name="morning_notification_title">Morning Check-in (9:00 AM)</string>
