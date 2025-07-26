@@ -52,13 +52,16 @@ public class LoginFragment extends Fragment {
                         .apply();
 
                 Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment);
 
                 Calendar calendar = Calendar.getInstance();
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
                 if (hour < 17) {
+                    // Before 5 PM → navigate to check-in (User Scenario 1)
                     Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment);
                 } else {
+                    // After 5 PM → navigate to journal prompt (User Scenario 2)
                     Navigation.findNavController(view).navigate(R.id.navigation_journal_prompt);
                 }
 
