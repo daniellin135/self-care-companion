@@ -367,5 +367,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{ label }
         );
     }
+
+    public String getUserFirstName() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT first_name FROM User LIMIT 1";  // assuming only 1 user
+        Cursor cursor = db.rawQuery(query, null);
+
+        String firstName = null;
+        if (cursor.moveToFirst()) {
+            firstName = cursor.getString(0);
+        }
+
+        cursor.close();
+        db.close();
+        return firstName;
+    }
 }
 

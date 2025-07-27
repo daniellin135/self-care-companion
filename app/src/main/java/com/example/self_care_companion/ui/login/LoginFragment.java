@@ -1,5 +1,6 @@
 package com.example.self_care_companion.ui.login;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,15 @@ public class LoginFragment extends Fragment {
             String storedPin = dbHelper.getUserPin();
 
             if (storedPin != null && storedPin.equals(hashedInput)) {
+
+                String nameFromDB = dbHelper.getUserFirstName();
+
+                requireContext()
+                        .getSharedPreferences("selfcare", Context.MODE_PRIVATE)
+                        .edit()
+                        .putString("user_name", nameFromDB)
+                        .apply();
+
                 Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment);
 
@@ -54,9 +64,11 @@ public class LoginFragment extends Fragment {
                     // After 5 PM → navigate to journal prompt (User Scenario 2)
                     Navigation.findNavController(view).navigate(R.id.navigation_journal_prompt);
                 }
+
             } else {
                 Toast.makeText(requireContext(), "Incorrect PIN", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }
