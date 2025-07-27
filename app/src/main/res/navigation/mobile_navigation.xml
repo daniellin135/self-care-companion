@@ -61,7 +61,15 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.self_care_companion.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_profileFragment_to_splashFragment"
+            app:destination="@id/splashFragment"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_notification"
