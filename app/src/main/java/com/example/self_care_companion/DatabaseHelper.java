@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.concurrent.TimeUnit;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -94,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("User", null, values);
         db.close();
     }
-
+    
     public void addMood(String mood) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -239,6 +240,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return mostFrequentMood;
     }
 
+    public Map<String, Double> getWeightedMoodFrequencies(int pastDays) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Map<String, Double> weightedMap = new HashMap<>();
+
+        String pastDaysStr = "-" + pastDays + " days";
+        String query = "SELECT mood, timestamp FROM Mood WHERE DATE(timestamp) >= DATE('now', ?)";
+
+        Cursor cursor = db.rawQuery(query, new String[]{pastDaysStr});
+
+        Calendar nowCal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        nowCal.set(Calendar.HOUR_OF_DAY, 0);
+        nowCal.set(Calendar.MINUTE, 0);
+        nowCal.set(Calendar.SECOND, 0);
+        nowCal.set(Calendar.MILLISECOND, 0);
+        Date todayMidnightUTC = nowCal.getTime();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        if (cursor.moveToFirst()) {
+            do {
+                String mood = cursor.getString(0);
+                String timestampStr = cursor.getString(1);
+                Date timestamp;
+
+                try {
+                    timestamp = sdf.parse(timestampStr);
+                } catch (Exception e) {
+                    continue; // skip invalid date
+                }
+
+                double weight = timestamp.after(todayMidnightUTC) ? 2.0 : 1.0;
+
+                weightedMap.put(mood, weightedMap.getOrDefault(mood, 0.0) + weight);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return weightedMap;
+    }
+
     public boolean checkifUserExists() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT COUNT(*) FROM User";
@@ -305,7 +348,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return moodMap;
     }
-
 
     public Map<String, Double> getHabitValues(String label, int pastDays) {
         SQLiteDatabase db = this.getReadableDatabase();

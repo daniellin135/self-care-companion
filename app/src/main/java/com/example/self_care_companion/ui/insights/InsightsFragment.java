@@ -83,7 +83,17 @@ public class InsightsFragment extends Fragment {
 
         List<String> moods = new ArrayList<>(moodSuggestions.keySet());
 
-        String moodParam = databaseHelper.getMostFrequentMood();
+        Map<String, Double> weightedMoods = databaseHelper.getWeightedMoodFrequencies(3);
+
+        String moodParam = null;
+        double maxWeight = 0.0;
+
+        for (Map.Entry<String, Double> entry : weightedMoods.entrySet()) {
+            if (entry.getValue() > maxWeight) {
+                maxWeight = entry.getValue();
+                moodParam = entry.getKey();
+            }
+        }
         String noDataText = "No mood data available";
 
         if (moods.contains(moodParam)) {
