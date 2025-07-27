@@ -91,11 +91,19 @@ public class MoodTrendsFragment extends Fragment {
     }
 
     private void loadPieChartData(int pastDays) {
-        Map<String, Integer> moodCounts = MainActivity.databaseHelper.getMoodCountsFiltered(pastDays);
+        Map<String, Double> moodWeights = MainActivity.databaseHelper.getWeightedMoodFrequencies(pastDays);
         List<PieEntry> entries = new ArrayList<>();
 
-        for (Map.Entry<String, Integer> entry : moodCounts.entrySet()) {
-            entries.add(new PieEntry(entry.getValue(), entry.getKey()));
+        double total = 0;
+        for (double weight : moodWeights.values()) {
+            total += weight;
+        }
+
+        for (Map.Entry<String, Double> entry : moodWeights.entrySet()) {
+            float percent = (float) (entry.getValue() / total * 100.0);
+            if (percent > 0) {
+                entries.add(new PieEntry(percent, entry.getKey()));
+            }
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "Mood Distribution");
