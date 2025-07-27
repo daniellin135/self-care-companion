@@ -326,48 +326,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return moodMap;
     }
 
-    public Map<String, Integer> getWeightedMoodCounts(int pastDays) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Map<String, Integer> moodMap = new HashMap<>();
-
-        String query = "SELECT mood, timestamp FROM Mood WHERE DATE(timestamp) >= DATE('now', ?)";
-        String pastDaysString = "-" + pastDays + " days";
-
-        Cursor cursor = db.rawQuery(query, new String[]{pastDaysString});
-        long now = System.currentTimeMillis();
-
-        if (cursor.moveToFirst()) {
-            do {
-                String mood = cursor.getString(0);
-                String timestampStr = cursor.getString(1);
-
-                int weight = 1;
-                try {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-                    sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-                    Date timestamp = sdf.parse(timestampStr);
-
-                    if (timestamp != null) {
-                        long timeDiff = now - timestamp.getTime();
-                        // 24 hours in milliseconds
-                        if (timeDiff <= 24 * 60 * 60 * 1000) {
-                            weight = 2; // Double weight for moods in past 24 hrs
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                int current = moodMap.getOrDefault(mood, 0);
-                moodMap.put(mood, current + weight);
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-        return moodMap;
-    }
-
     public Map<String, Double> getHabitValues(String label, int pastDays) {
         SQLiteDatabase db = this.getReadableDatabase();
         Map<String, Double> habitData = new LinkedHashMap<>();
