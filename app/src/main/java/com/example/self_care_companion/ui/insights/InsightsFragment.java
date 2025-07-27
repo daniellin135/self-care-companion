@@ -83,7 +83,7 @@ public class InsightsFragment extends Fragment {
 
         List<String> moods = new ArrayList<>(moodSuggestions.keySet());
 
-        Map<String, Double> weightedMoods = databaseHelper.getWeightedMoodFrequencies(7);
+        Map<String, Double> weightedMoods = databaseHelper.getWeightedMoodFrequencies(3);
 
         String moodParam = null;
         double maxWeight = 0.0;
