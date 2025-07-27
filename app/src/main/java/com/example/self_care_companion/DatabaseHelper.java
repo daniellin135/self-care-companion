@@ -16,6 +16,8 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -102,12 +104,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addJournalEntry(String entry) {
+    public void addJournalEntry(String entry, String isoDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("entry", entry);
+        values.put("timestamp", isoDate);  // Manually insert a timestamp
         db.insert("Journal", null, values);
         db.close();
+    }
+
+    public List<String> getJournalEntriesForDate(String date) {
+        List<String> entries = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT entry FROM Journal WHERE DATE(timestamp) = ?",
+                new String[]{date}
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                entries.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return entries;
     }
 
     public void addHabit(String label, double value, String units, double goal) {
