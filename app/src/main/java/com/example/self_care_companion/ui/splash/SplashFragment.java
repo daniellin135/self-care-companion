@@ -28,7 +28,6 @@ public class SplashFragment extends Fragment {
         Button loginBtn = view.findViewById(R.id.btn_log_in);
 
         DatabaseHelper db = new DatabaseHelper(requireContext());
-
         if (db.checkifUserExists()) {
             signUpBtn.setVisibility(View.GONE);
             loginBtn.setVisibility(View.VISIBLE);

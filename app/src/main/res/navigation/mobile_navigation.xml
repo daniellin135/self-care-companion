@@ -82,6 +82,12 @@
         tools:layout="@layout/fragment_journal_nav" />
 
     <fragment
+        android:id="@+id/navigation_journal_calendar"
+        android:name="com.example.self_care_companion.ui.journal.JournalCalendarFragment"
+        android:label="Journal Calendar"
+        tools:layout="@layout/fragment_journal_calendar" />
+
+    <fragment
         android:id="@+id/navigation_moodtrends"
         android:name="com.example.self_care_companion.ui.mood_trends.MoodTrendsFragment"
         android:label="Mood Trends"

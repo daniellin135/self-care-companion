@@ -11,4 +11,5 @@
     <color name="button">#FFCED1F8</color>
     <color name="button_pressed">#9FA3D8</color>
     <color name="secondary">#FFECD2E0</color>
+    <color name="top_nav">#9cabf7</color>
 </resources>

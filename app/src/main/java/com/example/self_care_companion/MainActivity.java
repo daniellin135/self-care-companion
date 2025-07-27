@@ -2,6 +2,7 @@ package com.example.self_care_companion;
 
 import android.os.Bundle;
 import android.view.View;
+import android.text.Html;
 
 import com.example.self_care_companion.Notifications.NotificationHelper;
 import com.example.self_care_companion.Notifications.NotificationPreferences;
@@ -53,7 +54,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.splashFragment || destination.getId() == R.id.loginFragment || destination.getId() == R.id.signUpFragment) {
+            if (    destination.getId() == R.id.splashFragment ||
+                    destination.getId() == R.id.loginFragment ||
+                    destination.getId() == R.id.signUpFragment
+            ) {
                 if (getSupportActionBar() != null) {
                     getSupportActionBar().hide(); // Hide top app bar
                 }
@@ -64,10 +68,20 @@ public class MainActivity extends AppCompatActivity {
                 }
                 navView.setVisibility(View.VISIBLE); // Show bottom nav
             }
+
+            if (destination.getId() == R.id.navigation_journal_calendar) {
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    getSupportActionBar().setTitle("Past Entries");
+                }
+            } else {
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false); // Hide back arrow
+                }
+            }
         });
 
         databaseHelper = new DatabaseHelper(this);
-
         // setup morning, noon, and evening notifications
         NotificationHelper.createNotificationChannel(this);
         NotificationPreferences prefs = new NotificationPreferences(this);
@@ -81,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
             NotificationScheduler.scheduleEveningNotification(this, 17, 0);
         }
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        return navController.navigateUp() || super.onSupportNavigateUp();
+    }
 
 }
